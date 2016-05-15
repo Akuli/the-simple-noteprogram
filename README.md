@@ -6,13 +6,13 @@ This is a simple note-taking program written in Python 3 with GTK+ 3 aimed at GN
 
 This application was designed for GNU/Linux users. I haven't made a Windows installer (yet) so following these instructions for installing the Windows dependencies will result in many useless programs. I've included some Windows instructions anyway just because it's possible to run this program in Windows.
 
-OSX is not supported in these instructions. I don't have a mac so i can't test my applications on OSX. However, installing the dependencies and running this program without installing should work the same way it does for Windows.
+OSX is not supported in these instructions. I don't have a mac so i can't test my applications on OSX. However, installing the dependencies should work the same way it works for Windows and running should work similarly to GNU operating systems.
 
 ## Downloading and dependencies
 
-Downloading this application is easy. Just go to the top right of this page and click the "Download zip" option. Then extract the `local` folder from the zip.
+Downloading this application is easy. Just go to the top right of this page and click the "Download zip" button. Then extract the `install-root` folder from the zip.
 
-These dependencies are needed to run this program:
+You need to have these dependencies installed in order to run this program:
 
 | Name                  | Debian/Ubuntu package             | Windows download                                                                              |
 |-----------------------|-----------------------------------|-----------------------------------------------------------------------------------------------|
@@ -26,7 +26,7 @@ __[\*]__ *Install Python first, then right-click command prompt in Start menu or
 
 ## Running without installing
 
-This is easy after downloading the `install-root` directory. On Windows, open the `install-root` directory, rename `the-simple-noteprogram` to `the-simple-noteprogram.pyw` and double-click it to run. On GNU/Linux, run these commands on a terminal window (`$` is the prompt, don't type it literally):
+This is easy after downloading the `install-root` directory. On Windows, open `install-root`, rename `the-simple-noteprogram` to `the-simple-noteprogram.pyw` and double-click it to run. On GNU/Linux, run these commands on a terminal window (`$` is the prompt, don't type it literally):
 
     $ cd /path/to/install-root
     $ chmod +x bin/the-simple-noteprogram
@@ -59,10 +59,12 @@ This is for system-wide installations. In the last step you'll probably get a lo
     $ find -type f -exec rm ~/.local/{} \;
     $ find -type d -exec rmdir ~/.local/{} \;
 
-Here's a similar command for system-wide installations:
+Here are similar commands for user-wide installations:
 
     $ cd /path/to/install-root
     $ find -type f -exec rm /usr/local/{} \;
     $ find -type d -exec rmdir /usr/local/{} \;
 
-Installing and uninstalling on other operating systems
+#### Other operating systems
+
+Move the install-root directory somewhere. You can also rename it if you want to. Then make a clickable link to the executable (for example, `the-simple-noteprogram.pyw` on Windows).
