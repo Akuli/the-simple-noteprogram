@@ -1,5 +1,7 @@
 # The Simple Noteprogram
 
+#### __Note:__ This program is still being developed, it may be buggy.
+
 This is a simple note-taking program written in Python 3 with GTK+ 3 aimed at GNU/Linux users. It will display a note icon in the system tray. The tray icon can be clicked and new notes with a title and a description can be made. The notes are always saved automatically.
 
 ## Windows/OSX support
