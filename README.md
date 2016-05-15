@@ -26,7 +26,7 @@ __[\*]__ *Install Python first, then right-click command prompt in Start menu or
 
 ## Running without installing
 
-This is easy after downloading the `install-root` directory. On Windows, open `install-root`, rename `the-simple-noteprogram` to `the-simple-noteprogram.pyw` and double-click it to run. On GNU/Linux, run these commands on a terminal window (`$` is the prompt, don't type it literally):
+This is easy after downloading the `install-root` directory. On Windows, open `install-root`, go to `bin`, rename `the-simple-noteprogram` to `the-simple-noteprogram.pyw` and double-click it to run. On GNU/Linux, give the file executable permissions and run it. You can do it by running these commands on a terminal window (`$` is the prompt, don't type it literally):
 
     $ cd /path/to/install-root
     $ chmod +x bin/the-simple-noteprogram
@@ -38,33 +38,19 @@ This is easy after downloading the `install-root` directory. On Windows, open `i
 
 First run the program without installing to make sure it works.
 
-The `install-root` directory's content is meant to be installed into a directory somewhere on your computer. Typical locations for it are `/usr/local` for a system-wide install, `~/.local` for a user-wide install (where `~` is the user's home directory) and `~/your/build/root/usr` for creating a distribution package, such as a Debian package or an rpm package. The program should appear in the desktop environment's menu after installation. In the example commands, replace `/path/to/local` with a path to the `install-root` directory you extracted.
+The `install-root` directory's content is meant to be installed into a directory somewhere on your computer. A typical location for it is `/usr/local`. The program should appear in the desktop environment's menu after installation. In the example commands, replace `/path/to/install-root` with the path to the `install-root` directory you extracted.
 
-You can use rsync to install the content of the install-root directory. For example, a system-wide installation can be done like this:
+You can use rsync to install the content of the install-root directory, like this:
 
     $ cd /path/to/install-root
     $ sudo rsync -r * /usr/local
 
-You can also install user-wide like this, the .desktop file is edited to make sure it will find the executable. Don't run this as root.
+Uninstalling is a bit more complicated. We need to find the installed files and then remove them. You'll probably get some warnings from the last command saying that the directory is not empty, it's normal. Remember that `/path/to/install-root` is the path to the `install-root` you downloaded, __*not*__ to the directory you installed to!
 
     $ cd /path/to/install-root
-    $ rsync -r * ~/.local
-    $ echo "Exec=$HOME/.local/bin/the-simple-noteprogram" >> ~/.local/share/applications/the-simple-noteprogram.desktop
-
-Uninstalling is a bit more complicated. We need to find the installed files and then remove them. __Remember that `/path/to/install-root` is the path to the `install-root` you downloaded, *not* to the directory you installed to!__
-
-This is for system-wide installations. In the last step you'll probably get a lot of warnings from rmdir saying that the directory is not empty, that's normal.
-
-    $ cd /path/to/install-root
-    $ find -type f -exec rm ~/.local/{} \;
-    $ find -type d -exec rmdir ~/.local/{} \;
-
-Here are similar commands for user-wide installations:
-
-    $ cd /path/to/install-root
-    $ find -type f -exec rm /usr/local/{} \;
-    $ find -type d -exec rmdir /usr/local/{} \;
+    $ find -type f -exec sudo rm /usr/local/{} \;
+    $ find -type d -exec sudo rmdir /usr/local/{} \;
 
 #### Other operating systems
 
-Move the install-root directory somewhere. You can also rename it if you want to. Then make a clickable link to the executable (for example, `the-simple-noteprogram.pyw` on Windows).
+You can move the `install-root` directory anywhere you want and rename it to anything you want. You can also make a clickable link to the executable in `install-root/bin`.
