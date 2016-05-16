@@ -9,14 +9,14 @@ import gi
 gi.require_version('Gtk', '3.0')                            # NOQA
 gi.require_version('AppIndicator3', '0.1')                  # NOQA
 from gi.repository import Gtk
-from . import filepaths
+from . import about, filepaths
 
 
 # Internationalization
 gettext.bindtextdomain(
-    'messages', localedir=join(filepaths.sharedir, 'locale'),
+    about.DASHES, localedir=join(filepaths.sharedir, 'locale'),
 )
-gettext.textdomain('messages')
+gettext.textdomain(about.DASHES)
 
 # The icon directory is probably not in Gtk.IconTheme's search_path
 theme = Gtk.IconTheme.get_default()
