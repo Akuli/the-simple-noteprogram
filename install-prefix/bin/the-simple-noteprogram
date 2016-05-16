@@ -2,11 +2,11 @@
 import sys
 if sys.version_info[:2] < (3, 2):                           # NOQA
     sys.exit("This program requires Python 3.2 or newer.")  # NOQA
-import os
+import importlib
 from os.path import abspath, dirname, join
-import subprocess
+
+sys.path.append(join(dirname(dirname(abspath(__file__))), 'lib'))
+main = importlib.import_module('the-simple-noteprogram.__main__').main
 
 if __name__ == '__main__':
-    install_prefix = dirname(dirname(abspath(__file__)))
-    os.chdir(join(install_prefix, 'lib'))
-    subprocess.call([sys.executable, '-m', 'the-simple-noteprogram'])
+    main()
