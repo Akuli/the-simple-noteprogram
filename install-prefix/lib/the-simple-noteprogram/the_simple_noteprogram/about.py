@@ -9,9 +9,6 @@ TRANSLATORS = {
 }
 
 # General information
-NAME = "The Simple Noteprogram"
-DASHES = 'the-simple-noteprogram'
-SCORES = 'the_simple_noteprogram'
 SHORT_DESCRIPTION = "Simple GTK+ 3 application for taking notes"
 # TODO: fix this
 LONG_DESCRIPTION = """\
@@ -41,7 +38,7 @@ def about(*ign):
     # the application doesn't have any kind of main window to set as the
     # parent
     dialog = Gtk.AboutDialog(
-        program_name=NAME,
+        program_name="The Simple Noteprogram",
         version=VERSION,
         comments=SHORT_DESCRIPTION,
         license_type=Gtk.License.MIT_X11,

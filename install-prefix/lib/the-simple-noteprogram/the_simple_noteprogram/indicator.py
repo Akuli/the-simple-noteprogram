@@ -72,10 +72,9 @@ def update(notelist):
 # The indicator and menu don't do anything by default so they can be
 # made now
 _indicator = AppIndicator3.Indicator.new(
-    about.DASHES,
+    'the-simple-noteprogram',
     Gtk.IconTheme.get_default().lookup_icon(
-            about.DASHES,
-            24,
+            'the-simple-noteprogram', 24,
             Gtk.IconLookupFlags.NO_SVG,
         ).get_filename(),
     AppIndicator3.IndicatorCategory.APPLICATION_STATUS,

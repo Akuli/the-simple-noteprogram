@@ -31,9 +31,12 @@ class _Note:
                 content = f.read()
 
         # Creating widgets
-        gladefile = join(filepaths.libdir, about.DASHES, 'note.glade')
         self._builder = Gtk.Builder()
-        self._builder.add_from_file(gladefile)
+        self._builder.add_from_file(join(
+            filepaths.libdir,
+            'the-simple-noteprogram',
+            'note.glade',
+        ))
         get = self._builder.get_object
         get('entry1').set_tooltip_text(_("The title of the note"))
         get('entry1').connect('changed', self._title_from_entry, True)
@@ -80,7 +83,7 @@ class _Note:
 
     def _title_from_entry(self, entry, update_indicator):
         """Updates the window's title"""
-        title = entry.get_text() + " - " + about.NAME
+        title = entry.get_text() + " - The Simple Noteprogram"
         self._builder.get_object('window1').set_title(title)
         if update_indicator:
             indicator.update(all_notes)

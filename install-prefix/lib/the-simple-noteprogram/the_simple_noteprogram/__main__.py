@@ -14,9 +14,9 @@ from . import about, filepaths
 
 # Internationalization
 gettext.bindtextdomain(
-    about.DASHES, localedir=join(filepaths.sharedir, 'locale'),
+    'the-simple-noteprogram', localedir=join(filepaths.sharedir, 'locale'),
 )
-gettext.textdomain(about.DASHES)
+gettext.textdomain('the-simple-noteprogram')
 
 # The icon directory is probably not in Gtk.IconTheme's search_path
 theme = Gtk.IconTheme.get_default()
