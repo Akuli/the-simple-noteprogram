@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 import sys
-if sys.version_info[:2] < (3, 2):
-    sys.stderr.write("This program requires Python 3.2 or newer.\n")
-    sys.exit(1)
+if sys.version_info[:2] < (3, 2):                           # NOQA
+    sys.exit("This program requires Python 3.2 or newer.")  # NOQA
 import os
 from os.path import abspath, dirname, join
 import subprocess
