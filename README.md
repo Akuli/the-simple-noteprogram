@@ -12,7 +12,7 @@ OSX is not supported in these instructions. I don't have a mac so i can't test m
 
 ## Downloading and dependencies
 
-Downloading this application is easy. Just go to the top right of this page and click the "Download zip" button. Then extract the `install-root` folder from the zip.
+Downloading this application is easy. Just go to the top right of this page and click the "Download zip" button. Then extract the `install-prefix` folder from the zip.
 
 You need to have these dependencies installed in order to run this program:
 
@@ -28,9 +28,9 @@ __[\*]__ *Install Python first, then right-click command prompt in Start menu or
 
 ## Running without installing
 
-This is easy after downloading the `install-root` directory. On Windows, open `install-root`, go to `bin`, rename `the-simple-noteprogram` to `the-simple-noteprogram.pyw` and double-click it to run. On GNU/Linux, give the file executable permissions and run it. You can do it by running these commands on a terminal window (`$` is the prompt, don't type it literally):
+This is easy after downloading the `install-prefix` directory. On Windows, open `install-prefix`, go to `bin`, rename `the-simple-noteprogram` to `the-simple-noteprogram.pyw` and double-click it to run. On GNU/Linux, give the file executable permissions and run it. You can do it by running these commands on a terminal window (`$` is the prompt, don't type it literally):
 
-    $ cd /path/to/install-root
+    $ cd /path/to/install-prefix
     $ chmod +x bin/the-simple-noteprogram
     $ bin/the-simple-noteprogram
 
@@ -40,19 +40,19 @@ This is easy after downloading the `install-root` directory. On Windows, open `i
 
 First run the program without installing to make sure it works.
 
-The `install-root` directory's content is meant to be installed into a directory somewhere on your computer. A typical location for it is `/usr/local`. The program should appear in the desktop environment's menu after installation. In the example commands, replace `/path/to/install-root` with the path to the `install-root` directory you extracted.
+The `install-prefix` directory's content is meant to be installed into a directory somewhere on your computer. A typical location for it is `/usr/local`. The program should appear in the desktop environment's menu after installation. In the example commands, replace `/path/to/install-prefix` with the path to the `install-prefix` directory you extracted.
 
-You can use rsync to install the content of the install-root directory, like this:
+You can use rsync to install the content of the install-prefix directory, like this:
 
-    $ cd /path/to/install-root
+    $ cd /path/to/install-prefix
     $ sudo rsync -r * /usr/local
 
-Uninstalling is a bit more complicated. We need to find the installed files and then remove them. You'll probably get some warnings from the last command saying that the directory is not empty, it's normal. Remember that `/path/to/install-root` is the path to the `install-root` you downloaded, __*not*__ to the directory you installed to!
+Uninstalling is a bit more complicated. We need to find the installed files and then remove them. You'll probably get some warnings from the last command saying that the directory is not empty, it's normal. Remember that `/path/to/install-prefix` is the path to the `install-prefix` you downloaded, __*not*__ to the directory you installed to!
 
-    $ cd /path/to/install-root
+    $ cd /path/to/install-prefix
     $ find -type f -exec sudo rm /usr/local/{} \;
     $ find -type d -exec sudo rmdir /usr/local/{} \;
 
 #### Other operating systems
 
-You can move the `install-root` directory anywhere you want and rename it to anything you want. You can also make a clickable link to the executable in `install-root/bin`.
+You can move the `install-prefix` directory anywhere you want and rename it to anything you want. You can also make a clickable link to the executable in `install-prefix/bin`.
