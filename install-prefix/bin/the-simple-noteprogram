@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+import sys
+if sys.version_info[:2] < (3, 2):
+    sys.stderr.write("This program requires Python 3.2 or newer.\n")
+    sys.exit(1)
+import os
+from os.path import abspath, dirname, join
+import subprocess
+
+if __name__ == '__main__':
+    install_prefix = dirname(dirname(abspath(__file__)))
+    os.chdir(join(install_prefix, 'lib'))
+    subprocess.call([sys.executable, '-m', 'the-simple-noteprogram'])
