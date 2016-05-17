@@ -27,12 +27,10 @@ def about(*ign):
 
     pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
         Gtk.IconTheme.get_default().lookup_icon(
-                DASHES,
-                48,
+                'the-simple-noteprogram', 48,
                 Gtk.IconLookupFlags.NO_SVG,
             ).get_filename(),
-        48,
-        48,
+        48, 48,
     )
 
     # This may result in a warning about setting a transient parent but
