@@ -48,7 +48,7 @@ You can use rsync to install the content of the install-prefix directory and chm
     $ sudo rsync -r * /usr/local
     $ sudo chmod a+x /usr/local/bin/the-simple-noteprogram
 
-Uninstalling is a bit more complicated. We need to find the installed files and then remove them. Remember that `/path/to/install-prefix` is the path to the `install-prefix` you downloaded, __*not*__ to the directory you installed to!
+Uninstalling is a bit more complicated. We need to find the installed files and then remove them. __Remember that `/path/to/install-prefix` is the path to the `install-prefix` you downloaded, *not* to the directory you installed to.__
 
     $ cd /path/to/install-prefix
     $ find -type f -exec sudo rm /usr/local/{} \;
