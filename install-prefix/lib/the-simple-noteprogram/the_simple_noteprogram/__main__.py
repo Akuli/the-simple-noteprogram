@@ -14,7 +14,8 @@ from . import about, filepaths
 
 # Internationalization
 gettext.bindtextdomain(
-    'the-simple-noteprogram', localedir=join(filepaths.sharedir, 'locale'),
+    'the-simple-noteprogram',
+    localedir=join(filepaths.sharedir, 'locale'),
 )
 gettext.textdomain('the-simple-noteprogram')
 
