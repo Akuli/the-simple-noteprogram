@@ -3,7 +3,7 @@ import sys
 if sys.version_info[:2] < (3, 2):                           # NOQA
     sys.exit("This program requires Python 3.2 or newer.")  # NOQA
 import gettext
-from os.path import join
+import os.path
 import signal
 import gi
 gi.require_version('Gtk', '3.0')                            # NOQA
@@ -15,14 +15,15 @@ from . import about, filepaths
 # Internationalization
 gettext.bindtextdomain(
     'the-simple-noteprogram',
-    localedir=join(filepaths.sharedir, 'locale'),
+    localedir=os.path.join(filepaths.sharedir, 'locale'),
 )
 gettext.textdomain('the-simple-noteprogram')
 
 # The icon directory is probably not in Gtk.IconTheme's search_path
 theme = Gtk.IconTheme.get_default()
-if join(filepaths.sharedir, 'icons') not in theme.get_search_path():
-    theme.append_search_path(join(filepaths.sharedir, 'icons'))
+icondir = os.path.join(filepaths.sharedir, 'icons')
+if icondir not in theme.get_search_path():
+    theme.append_search_path(icondir)
 
 # Ctrl+C interrupting, doesn't save currently opened notes
 signal.signal(signal.SIGINT, signal.SIG_DFL)
