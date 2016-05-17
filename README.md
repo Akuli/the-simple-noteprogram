@@ -2,13 +2,13 @@
 
 #### __Note:__ This program is still being developed, it may be buggy.
 
-This is a simple note-taking program written in Python 3 with GTK+ 3 aimed at GNU/Linux users. It will display a note icon in the system tray. The tray icon can be clicked and new notes with a title and a description can be made. The notes are always saved automatically.
+This is a simple note-taking program written in Python 3 with GTK+ 3 aimed at GNU/Linux users that displays a note icon in the system tray. The tray icon can be clicked and notes with a title and a description can be easily made. The notes are always saved automatically.
 
 ## Windows/OSX support
 
 This application was designed for GNU/Linux users. I haven't made a Windows installer (yet) so following these instructions for installing the Windows dependencies will result in many useless programs. I've included some Windows instructions anyway just because it's possible to run this program in Windows.
 
-OSX is not supported in these instructions. I don't have a mac so i can't test my applications on OSX. However, installing the dependencies should work the same way it works for Windows and running should work similarly to GNU operating systems.
+OSX is not supported in these instructions. I don't have a mac so I can't test my applications on OSX. However, installing the dependencies should work the same way it works for Windows and running should work similarly to GNU operating systems.
 
 ## Downloading and dependencies
 
@@ -42,10 +42,11 @@ First run the program without installing to make sure it works.
 
 The `install-prefix` directory's content is meant to be installed into a directory somewhere on your computer. A typical location for it is `/usr/local`. The program should appear in the desktop environment's menu after installation. In the example commands, replace `/path/to/install-prefix` with the path to the `install-prefix` directory you extracted.
 
-You can use rsync to install the content of the install-prefix directory, like this:
+You can use rsync to install the content of the install-prefix directory and chmod to make sure the main file has executable permissions, like this:
 
     $ cd /path/to/install-prefix
     $ sudo rsync -r * /usr/local
+    $ sudo chmod a+x /usr/local/bin/the-simple-noteprogram
 
 Uninstalling is a bit more complicated. We need to find the installed files and then remove them. You'll probably get some warnings from the last command saying that the directory is not empty, it's normal. Remember that `/path/to/install-prefix` is the path to the `install-prefix` you downloaded, __*not*__ to the directory you installed to!
 
@@ -55,4 +56,4 @@ Uninstalling is a bit more complicated. We need to find the installed files and 
 
 #### Other operating systems
 
-You can move the `install-prefix` directory anywhere you want and rename it to anything you want. You can also make a clickable link to the executable in `install-prefix/bin`.
+You can move the `install-prefix` directory anywhere you want and rename it to anything you want. You can also make a clickable link to the executable in `install-prefix/bin` and set its icon to one of the icons under `install-prefix/share/icons`.
