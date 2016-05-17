@@ -4,6 +4,8 @@ if sys.version_info[:2] < (3, 2):                           # NOQA
     sys.exit("This program requires Python 3.2 or newer.")  # NOQA
 from os.path import abspath, dirname, join
 
+# This is bad, but not as bad as running the module in a subprocess with
+# sys.executable -m
 sys.path.append(join(
     dirname(dirname(abspath(__file__))),
     'lib',
