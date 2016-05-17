@@ -52,7 +52,6 @@ Uninstalling is a bit more complicated. We need to find the installed files and 
 
     $ cd /path/to/install-prefix
     $ find -type f -exec sudo rm /usr/local/{} \;
-    $ find -type d -exec sudo rmdir /usr/local/{} \;
 
 #### Other operating systems
 
