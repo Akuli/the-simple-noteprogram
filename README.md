@@ -12,7 +12,7 @@ OSX is not supported in these instructions. I don't have a mac so I can't test m
 
 ## Downloading and dependencies
 
-Downloading this application is easy. Just go to the top right of this page and click the "Download zip" button. Then extract the `install-prefix` folder from the zip.
+Downloading this application is easy. Just go to the top right of this page and click the "Download zip" button (or "Clone or download" ➔ "Download zip"). Then extract the `install-prefix` folder from the zip.
 
 You need to have these dependencies installed in order to run this program:
 
