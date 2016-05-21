@@ -11,6 +11,7 @@ import re
 import shutil
 import stat
 import subprocess
+import textwrap
 
 
 # TODO: platform checks
@@ -23,13 +24,21 @@ class ArgumentParser(argparse.ArgumentParser):
         sys.exit("Error: " + str(message))
 
 
+if os.access(sys.prefix, os.W_OK):
+    default_prefix = sys.prefix
+else:
+    default_prefix = os.path.expanduser('~/.local')
+
 parser = ArgumentParser()
-parser.add_argument('-p', '--prefix', help="the location to install to")
+parser.add_argument(
+    '-p', '--prefix',
+    help="the location to install to, deafults to " + default_prefix,
+)
 parser.add_argument('action', help="install or uninstall")
 args = parser.parse_args()
 
 if args.prefix is None:
-    args.prefix = '/usr/local'  # TODO: sys.prefix or sys.exec_prefix
+    args.prefix = default_prefix
 else:
     args.prefix = os.path.abspath(os.path.expanduser(args.prefix))
 
@@ -98,5 +107,16 @@ else:
     subprocess.call(['xdg-desktop-menu', 'uninstall',
                      join('data', 'the-simple-noteprogram.desktop')])
 
+
+msg("the directory configuration file")
+path = join(args.prefix, 'lib', 'the-simple-noteprogram', 'filepaths.conf')
+if args.installing:
+    with open(path, 'w') as f:
+        f.write(textwrap.detent("""\
+        [Filepaths]
+        localedir = {localedir}
+        """.format(
+            localedir=join(args.prefix, 'share', 'locale'),
+        )))
 
 # TODO: running script
