@@ -35,6 +35,8 @@ With the dependencies installed, you can download and install this program using
     $ cd the-simple-noteprogram
     $ sudo make install
 
+The Simple Noteprogram should be in your desktop environment's menu after installing it.
+
 To uninstall this program you need the Makefile that came with it when you downloaded it. You can easily uninstall this program with it like this, assuming the Makefile is in a directory called `the-simple-noteprogram`:
 
     $ cd the-simple-noteprogram
