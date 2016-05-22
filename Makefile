@@ -22,8 +22,7 @@ install:
 	# Copying files
 	mkdir -p $(PREFIX)/bin $(PREFIX)/lib
 	cp -rT src $(PREFIX)/lib/the-simple-noteprogram
-	mv $(PREFIX)/lib/the-simple-noteprogram/data/gnu-linux-launcher $(PREFIX)/bin/the-simple-noteprogram
-	chmod a+x $(PREFIX)/bin/the-simple-noteprogram  # just to make sure it's executable
+	install $(PREFIX)/lib/the-simple-noteprogram/data/gnu-linux-launcher $(PREFIX)/bin/the-simple-noteprogram
 	@echo
 
 	# Installing icons
@@ -32,6 +31,11 @@ install:
 
 	# Installing the menu entry
 	xdg-desktop-menu install $(PREFIX)/lib/the-simple-noteprogram/data/the-simple-noteprogram.desktop
+	@echo
+
+	# Cleaning
+	rm $(PREFIX)/lib/the-simple-noteprogram/data/gnu-linux-launcher
+	rm $(PREFIX)/lib/the-simple-noteprogram/locale/*/LC_MESSAGES/the-simple-noteprogram.po
 	@echo
 
 uninstall:
