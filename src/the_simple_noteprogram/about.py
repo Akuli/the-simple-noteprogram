@@ -9,12 +9,15 @@ TRANSLATORS = {
 }
 
 # General information
+# Dependencies are not in one central place because different files need
+# them in different formats, for example, appdirs can be 'appdirs' or
+# 'python3-appdirs'
 SHORT_DESCRIPTION = "Simple GTK+ 3 application for taking notes"
 LONG_DESCRIPTION = "This is a simple note-taking program written in \
-Python 3 with GTK+ 3 aimed at GNU/Linux users that displays a note \
-icon in the system tray. The tray icon can be clicked and notes with a \
-title and a description can be easily made. The notes are always saved \
-automatically."
+Python 3 with GTK+ 3 aimed at GNU/Linux users. The program displays a \
+note icon in the system tray. The tray icon can be clicked and notes \
+with a title and a description can be easily made. The notes are \
+always saved automatically."
 VERSION = '1.0'
 KEYWORDS = ["notes", "Gtk+3"]
 

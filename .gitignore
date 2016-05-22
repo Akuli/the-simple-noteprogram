@@ -1,2 +1,5 @@
 # Cached files
 __pycache__/
+
+# Build files
+build/
