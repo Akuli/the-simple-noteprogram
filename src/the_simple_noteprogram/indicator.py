@@ -69,14 +69,9 @@ def update(notelist):
     menu.add_item(_("Quit"), Gtk.main_quit, Gtk.STOCK_QUIT)
 
 
-# The indicator and menu don't do anything by default so they can be
-# made now
+# The indicator doesn't do anything by default so it can be made now
 _indicator = AppIndicator3.Indicator.new(
-    'the-simple-noteprogram',
-    Gtk.IconTheme.get_default().lookup_icon(
-            'the-simple-noteprogram', 24,
-            Gtk.IconLookupFlags.NO_SVG,
-        ).get_filename(),
+    'the-simple-noteprogram', 'the-simple-noteprogram',
     AppIndicator3.IndicatorCategory.APPLICATION_STATUS,
 )
 _indicator.set_menu(_CustomMenu())

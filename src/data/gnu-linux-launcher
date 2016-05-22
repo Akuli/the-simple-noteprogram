@@ -8,10 +8,9 @@ from os.path import abspath, dirname, join
 # sys.executable -m
 sys.path.append(join(
     dirname(dirname(abspath(__file__))),
-    'lib',
-    'the-simple-noteprogram',
+    'lib', 'the-simple-noteprogram',
 ))
-from the_simple_noteprogram.__main__ import main            # NOQA
+from the_simple_noteprogram.__main__ import main
 
 if __name__ == '__main__':
     main()

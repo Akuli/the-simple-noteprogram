@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=The Simple Noteprogram
+GenericName=Note taking program
+GenericName[fi]=Muistilappuohjelma
+Comment=A simple GTK+ 3 application for taking notes
+Comment[fi]=Yksinkertainen ohjelma muistilappujen käyttöä varten
+Icon=the-simple-noteprogram
+Exec=the-simple-noteprogram
+Categories=GNOME;GTK;Office;Utility;

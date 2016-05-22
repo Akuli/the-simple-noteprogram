@@ -16,7 +16,7 @@ icon in the system tray. The tray icon can be clicked and notes with a \
 title and a description can be easily made. The notes are always saved \
 automatically."
 VERSION = '1.0'
-KEYWORDS = ["notes", "Gtk+ 3"]
+KEYWORDS = ["notes", "Gtk+3"]
 
 
 def about(*ign):
@@ -25,24 +25,22 @@ def about(*ign):
     # be used without having Gtk installed
     from gi.repository import Gtk, GdkPixbuf
 
-    pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
-        Gtk.IconTheme.get_default().lookup_icon(
-                'the-simple-noteprogram', 48,
-                Gtk.IconLookupFlags.NO_SVG,
-            ).get_filename(),
-        48, 48,
+    # Loading the logo, defaulting to None
+    logo = Gtk.IconTheme.get_default().lookup_icon(
+        'the-simple-noteprogram', 48, Gtk.IconLookupFlags.NO_SVG,
     )
+    if logo is not None:
+        logo = GdkPixbuf.Pixbuf.new_from_file(logo.get_filename())
 
-    # This may result in a warning about setting a transient parent but
-    # the application doesn't have any kind of main window to set as the
-    # parent
+    # Setting None as the parent is usually a bad idea, but in this case
+    # there is no parent window
     dialog = Gtk.AboutDialog(
         program_name="The Simple Noteprogram",
         version=VERSION,
         comments=SHORT_DESCRIPTION,
         license_type=Gtk.License.MIT_X11,
+        logo=logo,
         authors=AUTHORS,
-        logo=pixbuf,
         translator_credits="\n".join(
             ": ".join(item) for item in TRANSLATORS.items()
         ),

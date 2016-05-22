@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=The Simple Noteprogram
-Comment=A simple GTK+ 3 application for taking notes
-Exec=the-simple-noteprogram
-Icon=the-simple-noteprogram
-Terminal=false
-Type=Application
-Categories=GTK;Gnome;Accessories;
-Keywords=note;notes;

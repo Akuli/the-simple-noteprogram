@@ -9,7 +9,6 @@ from . import about, indicator, filepaths
 
 TEMPLATE = 'note-{}.txt'
 REGEX = r'^note-(\d+)\.txt$'
-os.makedirs(join(filepaths.configdir, 'notes'), exist_ok=True)
 all_notes = []
 
 
@@ -32,11 +31,7 @@ class _Note:
 
         # Creating widgets
         self._builder = Gtk.Builder()
-        self._builder.add_from_file(join(
-            filepaths.libdir,
-            'the-simple-noteprogram',
-            'note.glade',
-        ))
+        self._builder.add_from_file(join(filepaths.datadir, 'note.glade'))
         get = self._builder.get_object
         get('entry1').set_tooltip_text(_("The title of the note"))
         get('entry1').connect('changed', self._title_from_entry, True)
