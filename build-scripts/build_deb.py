@@ -120,4 +120,4 @@ Description: {short_desc}
     ))
 
 subprocess.call(['dpkg-deb', '--build', 'build',
-                 'the-simple-noteprogram-debian.deb'])
+                 'the-simple-noteprogram.deb'])
