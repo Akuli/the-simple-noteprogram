@@ -1,59 +1,37 @@
-# This file is for GNU operating systems, such as most Linux
-# distributions.
-
-# Edit to install to a custom location, if you install to a non-standard
-# prefix you may need to edit some files to get all features to work
-PREFIX = /usr/local
+# Edit this line to install to a custom location
+PREFIX=/usr/local
 
 
+VERSION=$(shell cd prefix/lib/the-simple-noteprogram; python3 -c 'from the_simple_noteprogram import about; print(about.VERSION)')
+SHORTDESC=$(shell cd prefix/lib/the-simple-noteprogram; python3 -c 'from the_simple_noteprogram import about; print(about.SHORT_DESCRIPTION)')
+LONGDESC=$(shell cd prefix/lib/the-simple-noteprogram; python3 -c 'from the_simple_noteprogram import about; print(about.LONG_DESCRIPTION)' | fold -w 71 -s | while read i; do echo " $i"; done)
 
-ICON_SIZES = 16 22 24 32 48 64 128 256
 
 all:
-	@echo "Run 'sudo make install' to install to $(PREFIX) or edit"
-	@echo "Makefile and run 'make install' or 'sudo make install' to"
-	@echo "install to some other location."
+	@echo "Run 'make install' to install The Simple Noteprogram $(VERSION)"
+	@echo "to $(PREFIX) or 'make uninstall' to uninstall it from there."
 
 install:
-	# Cleaning
-	rm -rf src/the_simple_noteprogram/__pycache__
-	@echo
-
-	# Copying files
-	mkdir -p $(PREFIX)/bin $(PREFIX)/lib
-	cp -rT src $(PREFIX)/lib/the-simple-noteprogram
-	install $(PREFIX)/lib/the-simple-noteprogram/data/gnu-linux-launcher $(PREFIX)/bin/the-simple-noteprogram
-	@echo
-
-	# Installing icons
-	$(foreach i, $(ICON_SIZES), xdg-icon-resource install --size $(i) $(PREFIX)/lib/the-simple-noteprogram/icons/the-simple-noteprogram-$(i).png the-simple-noteprogram;)
-	@echo
-
-	# Installing the menu entry
-	xdg-desktop-menu install $(PREFIX)/lib/the-simple-noteprogram/data/the-simple-noteprogram.desktop
-	@echo
-
-	# Cleaning
-	rm $(PREFIX)/lib/the-simple-noteprogram/data/gnu-linux-launcher
-	rm $(PREFIX)/lib/the-simple-noteprogram/locale/*/LC_MESSAGES/the-simple-noteprogram.po
-	@echo
+	make clean
+	cd prefix; find -type d -exec mkdir -p --mode=755 $(PREFIX)/{} \;
+	cd prefix; find -type f -exec install --mode=644 {} $(PREFIX)/{} \;
+	chmod 755 $(PREFIX)/bin/the-simple-noteprogram
+	make update-caches
 
 uninstall:
-	# Uninstalling the menu entry
-	xdg-desktop-menu uninstall $(PREFIX)/lib/the_simple_noteprogram/the-simple-noteprogram.desktop
-	@echo
+	cd prefix; find -type f -exec rm $(PREFIX)/{} \;
+	cd prefix; find -type d -exec rmdir $(PREFIX)/{} 2> /dev/null \;
+	make update-caches
 
-	# Uninstalling icons
-	$(foreach i, $(ICON_SIZES), xdg-icon-resource uninstall --size $(i) the-simple-noteprogram;)
-	@echo
+update-caches:
+	xdg-icon-resource forceupdate
+	xdg-desktop-menu forceupdate
 
-	# Removing files
-	rm $(PREFIX)/bin/the-simple-noteprogram
-	rm -r $(PREFIX)/lib/the-simple-noteprogram
-	@echo
+deb:
+	make clean
+#	cp -r prefix build
+	echo $(VERSION)
 
 clean:
-	# Cleaning
-	rm -rf src/the_simple_noteprogram/__pycache__
-	@echo
-
+	rm -rf prefix/lib/the-simple-noteprogram/the_simple_noteprogram/__pycache__
+	rm -rf build

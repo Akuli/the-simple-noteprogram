@@ -60,20 +60,23 @@ def main(args=None):
     signal.signal(signal.SIGINT, signal.SIG_DFL)
 
     # Internationalization
-    gettext.bindtextdomain('the-simple-noteprogram', filepaths.localedir)
+    gettext.bindtextdomain('the-simple-noteprogram', os.path.join(
+        filepaths.prefix, 'share', 'locale',
+    ))
     gettext.textdomain('the-simple-noteprogram')
 
     # These files need to have gettext and icons set up
     from . import indicator, notes
 
+    # Running
     with locker.lockfile():
-        indicator.load()
-        notes.load()
         if args.new_note:
             notes.new_note()
         Gtk.main()
         notes.unload()
-        indicator.unload()
+
+    # This function is not meant to be ran twice
+    sys.exit()
 
 
 if __name__ == '__main__':

@@ -1,5 +1,7 @@
 # The Simple Noteprogram
 
+### NOTE: This program is not at a usable stage just yet. This notice will be removed when this program is ready.
+
 This is a simple note-taking program written in Python 3 with GTK+ 3 aimed at GNU/Linux users. It displays a note icon in the system tray. The tray icon can be clicked and notes with a title and a description can be easily made. The notes are always saved automatically.
 
 ## Windows/OSX support
@@ -45,3 +47,4 @@ To uninstall this program you need the Makefile that came with it when you downl
 ## Issues
 
 If you have trouble using this program please help me to improve it by opening an issue [here](https://github.com/Akuli/the-simple-noteprogram/issues).
+

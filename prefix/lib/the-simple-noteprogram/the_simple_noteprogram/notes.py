@@ -2,14 +2,12 @@
 import functools
 from gettext import gettext as _
 import os
-from os.path import join
 import re
 from gi.repository import Gtk
 from . import about, indicator, filepaths
 
 TEMPLATE = 'note-{}.txt'
 REGEX = r'^note-(\d+)\.txt$'
-all_notes = []
 
 
 @functools.total_ordering
@@ -31,7 +29,9 @@ class _Note:
 
         # Creating widgets
         self._builder = Gtk.Builder()
-        self._builder.add_from_file(join(filepaths.datadir, 'note.glade'))
+        self._builder.add_from_file(os.path.join(
+            filepaths.prefix, 'lib', 'the-simple-noteprogram', 'note.glade',
+        ))
         get = self._builder.get_object
         get('entry1').set_tooltip_text(_("The title of the note"))
         get('entry1').connect('changed', self._title_from_entry, True)
@@ -67,11 +67,11 @@ class _Note:
 
     def _get_path(self):
         """Returns the path to the note's file"""
-        return join(filepaths.configdir, TEMPLATE.format(int(self)))
+        return os.path.join(filepaths.configdir, TEMPLATE.format(int(self)))
 
     def _on_delete_event(self, window, event):
         """Saves and hides the note, then returns True to make sure the
-        window doesn't get partly destroyed"""
+        window doesn't get destroyed"""
         self.save()
         self.hide()
         return True
@@ -142,17 +142,6 @@ class _Note:
                 os.remove(path)
 
 
-def load():
-    """Loads the notes, indicator's load() must be called before this"""
-    all_notes.clear()
-    for name in os.listdir(filepaths.configdir):
-        matches = re.search(REGEX, name)
-        if matches and os.path.isfile(join(filepaths.configdir, name)):
-            all_notes.append(_Note(int(matches.group(1))))
-    all_notes.sort()
-    indicator.update(all_notes)
-
-
 def unload():
     """Saves and hides the notes"""
     for note in all_notes:
@@ -162,8 +151,22 @@ def unload():
 
 def new_note(*ign):
     """Makes a new note"""
-    number = int(max(all_notes)) + 1 if all_notes else 0
+    if all_notes:
+        number = int(max(all_notes)) + 1
+    else:
+        number = 0
     note = _Note(number, new=True)
     note.show()
     all_notes.append(note)
     indicator.update(all_notes)
+
+
+# Loading the notes
+all_notes = []
+for name in os.listdir(filepaths.configdir):
+    matches = re.search(REGEX, name)
+    if matches and os.path.isfile(os.path.join(filepaths.configdir, name)):
+        all_notes.append(_Note(int(matches.group(1))))
+all_notes.sort()
+
+indicator.update(all_notes)
