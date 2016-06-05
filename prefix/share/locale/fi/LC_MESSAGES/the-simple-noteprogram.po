@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-06-05 14:07+EEST\n"
-"PO-Revision-Date: 2016-06-05 14:13+0300\n"
+"POT-Creation-Date: 2016-06-05 23:06+EEST\n"
+"PO-Revision-Date: 2016-06-05 23:11+0300\n"
 "Last-Translator: Akuli <Akuli>\n"
 "Language-Team: Akuli\n"
 "Language: fi\n"
@@ -16,102 +16,154 @@ msgstr ""
 "X-Generator: Virtaal 0.7.1\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/__main__.py:60
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/__main__.py:54
+msgid "usage: "
+msgstr "käyttö: "
+
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/__main__.py:55
+msgid "positional arguments"
+msgstr "vaaditut argumentit"
+
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/__main__.py:56
+msgid "optional arguments"
+msgstr "valinnaiset argumentit"
+
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/__main__.py:61
+msgid "show this help message and exit"
+msgstr "näytä tämä viesti ja poistu"
+
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/__main__.py:64
+msgid "show the version number and exit"
+msgstr "näytä versionumero ja poistu"
+
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/__main__.py:66
+msgid "make a new note"
+msgstr "luo uusi muistilappu"
+
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/__main__.py:75
 msgid "%s is already running."
 msgstr "%s on jo käynnissä."
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/about.py:10
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/about.py:31
 msgid "Finnish"
 msgstr "Suomi"
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/about.py:14
-msgid "a simple GTK+ 3 application for taking notes"
-msgstr "yksinkertainen GTK+ 3 -ohjelma muistilappuja varten"
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/about.py:35
+msgid "a simple application for taking notes"
+msgstr "yksinkertainen ohjelma muistilappuja varten"
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/about.py:15
-msgid "This is a note-taking program written in Python 3 with GTK+ 3 aimed mostly at GNU/Linux users. The program displays a note icon in the system tray. The tray icon can be clicked and notes with a title and a description can be easily made. The notes are always saved automatically."
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/about.py:36
+msgid "This program displays a note icon in the system tray. The tray icon can be clicked and notes with a title and a description can be easily made. The notes are always saved automatically."
 msgstr ""
-"Tämä on Python 3:ssa ja Gtk+ 3:lla kirjoitettu muistilappuohjelma, joka on "
-"suunnattu lähinnä GNU/Linux-käyttäjille. Ohjelma näyttää "
-"muistilappukuvakkeen ilmoitusalueella. Sitä klikkaamalla voidaan lisätä "
-"muistilappuja, joilla on otsikko ja kuvaus. Muistilaput tallennetaan aina "
-"automaattisesti."
+"Tämä ohjelma näyttää muistilappukuvakkeen ilmoitusalueella. Sitä voidaan "
+"klikata ja uusia muistilappuja, joilla on otsikko ja kuvaus voidaan lisätä "
+"helposti. Muistilaput tallennetaan aina automaattisesti."
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/indicator.py:63
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/about.py:62
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/indicator.py:67
+msgid "Help"
+msgstr "Ohje"
+
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/indicator.py:66
 msgid "New note"
 msgstr "Uusi muistilappu"
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/indicator.py:64
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:80
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/indicator.py:66
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:128
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/indicator.py:65
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/indicator.py:67
 msgid "About"
 msgstr "Tietoja"
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/indicator.py:66
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/indicator.py:67
 msgid "Quit"
 msgstr "Poistu"
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/indicator.py:84
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/indicator.py:93
 msgid "(no notes)"
 msgstr "(ei muistilappuja)"
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:24
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:47
 msgid "Untitled note"
 msgstr "Nimetön muistilappu"
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:25
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:48
 msgid "Enter notes here..."
 msgstr "Kirjoita muistiinpanoja tähän..."
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:38
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:59
+#, fuzzy
 msgid "The title of the note"
 msgstr "Muistilapun otsikko"
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:42
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:69
+msgid "Remove"
+msgstr "Poista"
+
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:70
 msgid "Remove this note"
 msgstr "Poista tämä muistilappu"
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:44
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:77
 msgid "The description of the note"
 msgstr "Tämän muistilapun kuvaus"
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:132
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:168
 msgid "Are you sure you want to remove this note?"
 msgstr "Halutako varmasti poistaa tämän muistilapun?"
 
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:133
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/notes.py:170
 msgid "Remove note"
 msgstr "Poista muistilappu"
 
 #:
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:57
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:64
+msgid "Click to choose the color"
+msgstr "Valitse väri klikkaamalla"
+
+#:
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:72
+msgid "Click to choose the font"
+msgstr "Valitse fontti klikkaamalla"
+
+#:
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:91
 msgid "General"
-msgstr "Yleiset"
+msgstr "Yleistä"
 
 #:
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:61
-msgid "Launch this program on startup"
-msgstr "Käynnistä tämä ohjelma tietokoneen käynnistyksen yhteydessä"
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:93
+msgid "This will add a key to Windows registry."
+msgstr "Tämä lisää avaimen Windowsin rekisteriin."
 
 #:
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:65
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:95
+msgid "This will add a .desktop file to ~/.config/autostart."
+msgstr "Tämä listää .desktop-tiedoston kansioon ~/.config/autostart."
+
+#:
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:96
+msgid "Launch this program when I log in"
+msgstr "Käynnistä tämä ohjelma kun kirjaudun sisään"
+
+#:
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:108
 msgid "Notes"
 msgstr "Muistilaput"
 
 #:
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:66
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:109
 msgid "Foreground color"
 msgstr "Edustaväri"
 
 #:
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:67
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:110
 msgid "Background color"
 msgstr "Taustaväri"
 
 #:
-#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:68
+#: prefix/lib/the-simple-noteprogram/the_simple_noteprogram/preferences_window.py:111
 msgid "Font"
 msgstr "Fontti"

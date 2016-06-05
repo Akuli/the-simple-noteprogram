@@ -35,10 +35,15 @@ clean:
 	rm -rf prefix/lib/the-simple-noteprogram/the_simple_noteprogram/__pycache__
 	rm -rf build
 	rm -f prefix-selection
+	rm -f messages.pot
 
 fix-perms:
 	chmod 755 build-scripts/select-prefix
 	chmod 755 prefix/bin/the-simple-noteprogram
+
+# This option uses pygettext to make a messages.pot
+get-pot:
+	pygettext prefix/lib/the-simple-noteprogram/the_simple_noteprogram/*.py
 
 install:
 	make clean

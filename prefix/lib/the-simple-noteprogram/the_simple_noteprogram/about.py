@@ -32,11 +32,10 @@ TRANSLATORS = {
 }
 
 # General information
-SHORT_DESC = _("a simple GTK+ 3 application for taking notes")
-LONG_DESC = _("This is program is written in Python using GTK+. The \
-program displays a note icon in the system tray. The tray icon can be \
-clicked and notes with a title and a description can be easily made. \
-The notes are always saved automatically.")
+SHORT_DESC = _("a simple application for taking notes")
+LONG_DESC = _("This program displays a note icon in the system tray. \
+The tray icon can be clicked and notes with a title and a description \
+can be easily made. The notes are always saved automatically.")
 VERSION = '1.0'
 KEYWORDS = ["notes", "Gtk+3"]
 
