@@ -8,6 +8,9 @@ all:
 	@echo "     make uninstall      uninstall from $(PREFIX)"
 	@echo "     make select-prefix  select a custom install location"
 
+run:
+	cd prefix/lib/the-simple-noteprogram; python3 -m the_simple_noteprogram
+
 install:
 	make clean
 	cd prefix; find -type d -exec mkdir -p --mode=755 $(PREFIX)/{}    \;
