@@ -41,7 +41,7 @@ class _Note:
         get('button1').set_tooltip_text(_("Remove this note"))
         get('button1').connect('clicked', self.remove)
         get('textview1').set_tooltip_text(_("The description of the note"))
-        get('textview1').set_wrap_mode(Gtk.WrapMode.WORD)
+        get('textview1').set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         self.content = content
         get('window1').connect('delete-event', self._on_delete_event)
 
