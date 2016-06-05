@@ -29,7 +29,6 @@ from the_simple_noteprogram import about, preferences_window
 try:
     from gi.repository import AppIndicator3     # NOQA
 except ImportError:
-    print("AppIndicator3 is not installed.")
     AppIndicator3 = None
 
 # Gtk.StatusIcon is deprecated in new versions of GTK+
@@ -113,7 +112,7 @@ def load():
     if AppIndicator3 is None:
         _INDICATOR = Gtk.StatusIcon()
         _INDICATOR.set_from_file(icon.get_filename())
-        _INDICATOR.connect('popup-_MENU', _on_statusicon_click)
+        _INDICATOR.connect('popup-menu', _on_statusicon_click)
         _INDICATOR.connect('activate', _on_statusicon_click, Gdk.BUTTON_PRIMARY)
     else:
         _INDICATOR = AppIndicator3.Indicator.new(
