@@ -15,7 +15,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+#lib/        # this was conflicting with prefix/lib
 lib64/
 parts/
 sdist/
@@ -60,3 +60,6 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+# Information about the install prefix
+prefix-selection

@@ -41,6 +41,7 @@ class _Note:
         get('button1').set_tooltip_text(_("Remove this note"))
         get('button1').connect('clicked', self.remove)
         get('textview1').set_tooltip_text(_("The description of the note"))
+        get('textview1').set_wrap_mode(Gtk.WrapMode.WORD)
         self.content = content
         get('window1').connect('delete-event', self._on_delete_event)
 
@@ -136,14 +137,14 @@ class _Note:
 
         if response == Gtk.ResponseType.YES:
             # Removing
+            preferences.remove_applycommand(self.apply_settings)
             self.hide()
             all_notes.remove(self)
             indicator.update(all_notes)
 
-            # The path doesn't exist if the note has never been saved
-            path = self._get_path()
-            if os.path.isfile(path):
-                os.remove(path)
+            # There is no file if the note has never been saved
+            if os.path.isfile(self._get_path()):
+                os.remove(self._get_path())
 
     def apply_settings(self):
         """Applies new color and font preferences"""

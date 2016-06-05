@@ -1,6 +1,6 @@
 #!/bin/bash
-# This script selects the install location for The Simple Noteprogram.
-# It should be run from the directory above this directory.
+# This script ask a directory from the user and writes it to
+# prefix-selection in the current directory.
 
 echo ""
 echo "Where would you like to install this program?"

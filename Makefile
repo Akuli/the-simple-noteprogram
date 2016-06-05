@@ -8,8 +8,16 @@ all:
 	@echo "     make uninstall      uninstall from $(PREFIX)"
 	@echo "     make select-prefix  select a custom install location"
 
-run:
-	cd prefix/lib/the-simple-noteprogram; python3 -m the_simple_noteprogram
+# TODO: add a 'deb' rule for making Debian packages
+
+clean:
+	rm -rf prefix/lib/the-simple-noteprogram/the_simple_noteprogram/__pycache__
+	rm -rf build
+	rm -f prefix-selection
+
+fix-perms:
+	chmod 755 build-scripts/select-prefix
+	chmod 755 prefix/bin/the-simple-noteprogram
 
 install:
 	make clean
@@ -18,21 +26,20 @@ install:
 	chmod 755 $(PREFIX)/bin/the-simple-noteprogram
 	make update-caches
 
-uninstall:
-	cd prefix; find -type f -exec rm    $(PREFIX)/{} 2> /dev/null \;
-	cd prefix; find -type d -exec rmdir $(PREFIX)/{} 2> /dev/null \;
-	make update-caches
+run:
+	make fix-perms
+	prefix/bin/the-simple-noteprogram
 
 select-prefix:
 	chmod 755 build-scripts/select-prefix
 	build-scripts/select-prefix
 
+uninstall:
+	make clean
+	cd prefix; find -type f -exec rm    $(PREFIX)/{} 2> /dev/null \;
+	cd prefix; find -type d -exec rmdir $(PREFIX)/{} 2> /dev/null \;
+	make update-caches
+
 update-caches:
 	xdg-icon-resource forceupdate
 	xdg-desktop-menu forceupdate
-
-# TODO: add a 'deb' rule for making Debian packages
-
-clean:
-	rm -rf prefix/lib/the-simple-noteprogram/the_simple_noteprogram/__pycache__
-	rm -rf build

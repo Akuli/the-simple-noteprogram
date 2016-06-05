@@ -15,6 +15,7 @@ _CONFFILES = [
 def set_rgba(key, rgba):
     """Sets an RGBA"""
     _config['Colors'][key] = rgba
+    save_and_apply()
 
 
 def get_rgba(key):
@@ -25,6 +26,7 @@ def get_rgba(key):
 def set_font(key, font):
     """Sets a font"""
     _config['Fonts'][key] = font
+    save_and_apply()
 
 
 def get_font(key):
@@ -47,11 +49,13 @@ def save_and_apply(*ign):
 
 
 def add_applycommand(func):
+    """Adds a command that save_and_apply will run"""
     if func not in _applycommands:
         _applycommands.append(func)
 
 
 def remove_applycommand(func):
+    """Removes a command added with add_applycommand"""
     if func in _applycommands:
         _applycommands.remove(func)
 
@@ -59,4 +63,4 @@ def remove_applycommand(func):
 _applycommands = []
 
 _config = configparser.ConfigParser(dict_type=dict)
-print(_config.read(_CONFFILES))
+_config.read(_CONFFILES)

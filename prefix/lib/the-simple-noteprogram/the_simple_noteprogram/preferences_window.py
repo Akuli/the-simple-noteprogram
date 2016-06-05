@@ -11,16 +11,25 @@ class _PairFrame(Gtk.Frame):
 
     def __init__(self, label):
         """Initializes the frame and adds a grid inside it"""
-        Gtk.Frame.__init__(self, label=label)
-        self._grid = Gtk.Grid(orientation=Gtk.Orientation.VERTICAL)
+        Gtk.Frame.__init__(self, label=label, border_width=10)
+        self._grid = Gtk.Grid(orientation=Gtk.Orientation.VERTICAL,
+                              border_width=10)
+        self._grid.set_column_homogeneous(True)
         self.add(self._grid)
+
+    def add_single(self, widget):
+        """Adds a widget to the grid"""
+        self._grid.add(widget)
 
     def add_pair(self, description, widget):
         """Adds a label with description as text to the grid and widget
         next to it"""
-        label = Gtk.Label(description)
-        self._grid.add(label)
-        self._grid.attach_next_to(widget, label, Gtk.PositionType.RIGHT, 1, 1)
+        # Adding the label into another grid makes it align to left
+        minigrid = Gtk.Grid()
+        minigrid.add(Gtk.Label(description))
+        self._grid.add(minigrid)
+        self._grid.attach_next_to(widget, minigrid,
+                                  Gtk.PositionType.RIGHT, 1, 1)
 
     def add_colorbutton(self, description, settingkey):
         """Makes a Gtk.ColorButton, connects it to make it change
@@ -40,11 +49,9 @@ class _PairFrame(Gtk.Frame):
 
     def _on_color_set(self, colorb, settingkey):
         preferences.set_rgba(settingkey, colorb.get_rgba().to_string())
-        preferences.save_and_apply()
 
     def _on_font_set(self, fontb, settingkey):
         preferences.set_font(settingkey, fontb.get_font_name())
-        preferences.save_and_apply()
 
 
 class _PreferenceBox(Gtk.Box):
@@ -55,10 +62,10 @@ class _PreferenceBox(Gtk.Box):
 
         # General
         frame = _PairFrame(_("General"))
-        switch = Gtk.Switch()
-        switch.set_active(autostarter.get_status())
-        switch.connect('notify::active', self._on_autostart_toggled)
-        frame.add_pair(_("Launch this program on startup"), switch)
+        button = Gtk.CheckButton(_("Launch this program when I log in"))
+        button.set_active(autostarter.get_status())
+        button.connect('toggled', self._on_autostart_toggled)
+        frame.add_single(button)
         self.add(frame)
 
         # Colors and fonts
@@ -68,8 +75,8 @@ class _PreferenceBox(Gtk.Box):
         frame.add_fontbutton(_("Font"), 'notefont')
         self.add(frame)
 
-    def _on_autostart_toggled(self, switch, gparam):
-        autostarter.set_status(switch.get_active())
+    def _on_autostart_toggled(self, button):
+        autostarter.set_status(button.get_active())
 
 
 def run(*ign):

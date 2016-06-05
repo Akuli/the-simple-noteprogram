@@ -2,9 +2,9 @@
 when the user logs in, based on this:
 https://29a.ch/2009/3/17/autostart-autorun-with-python"""
 
-import appdirs
 import os
 import shutil
+import appdirs
 from the_simple_noteprogram import filepaths
 
 try:
