@@ -29,26 +29,29 @@ Most GNU/Linux distributions come with many of these dependencies installed, and
 
     $ sudo apt-get install git make python3-appdirs python3-psutil python3-gi gir1.2-gtk-3.0 gir1.2-appindicator3-0.1
 
-## Installing and uninstalling
+## Downloading and running without installing
 
-With the dependencies installed, you can download and install this program using these commands:
+If you installed all the dependencies succesfully you should be able to download this program and try it out without installing it, like this:
 
     $ git clone https://github.com/Akuli/the-simple-noteprogram
     $ cd the-simple-noteprogram
+    $ make run
+
+## Installing and uninstalling
+
+After a test run, you can install this program easily.
+
     $ sudo make install
 
 By default, the program will be installed to `/usr/local`. You can install to a custom location like this:
 
-    $ git clone https://github.com/Akuli/the-simple-noteprogram
-    $ cd the-simple-noteprogram
     $ make select-prefix
     $ sudo make install
 
 The program should be in your desktop environment's menu after installing it.
 
-To uninstall this program, you need the directory you used for installing. You can easily uninstall this program with it like this, assuming the directory's name is `the-simple-noteprogram`:
+To uninstall this program, you need the directory you used for installing. Uninstalling is simple:
 
-    $ cd the-simple-noteprogram
     $ sudo make uninstall
 
 ## Issues
