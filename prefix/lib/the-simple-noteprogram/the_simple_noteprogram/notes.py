@@ -1,13 +1,14 @@
 """The notes"""
+
 import functools
 from gettext import gettext as _
 import os
 import re
-from gi.repository import Gtk
-from . import about, indicator, filepaths
+from gi.repository import Gtk, Gdk, Pango
+from the_simple_noteprogram import indicator, filepaths, preferences
 
-TEMPLATE = 'note-{}.txt'
-REGEX = r'^note-(\d+)\.txt$'
+_TEMPLATE = 'note-%d.txt'
+_REGEX = r'^note-(\d+)\.txt$'
 
 
 @functools.total_ordering
@@ -15,10 +16,9 @@ class _Note:
     """A note window"""
 
     def __init__(self, number, new=False):
-        """Reads the note's contents from a file or creates a new note
-        if number is None"""
+        """Reads the note from a file or creates a new note"""
         # Loading the note
-        self._number = number
+        self._number = int(number)
         if new:
             name = _("Untitled note")
             content = _("Enter notes here...")
@@ -30,7 +30,8 @@ class _Note:
         # Creating widgets
         self._builder = Gtk.Builder()
         self._builder.add_from_file(os.path.join(
-            filepaths.prefix, 'lib', 'the-simple-noteprogram', 'note.glade',
+            filepaths.prefix, 'lib',
+            'the-simple-noteprogram', 'note.glade',
         ))
         get = self._builder.get_object
         get('entry1').set_tooltip_text(_("The title of the note"))
@@ -42,6 +43,9 @@ class _Note:
         get('textview1').set_tooltip_text(_("The description of the note"))
         self.content = content
         get('window1').connect('delete-event', self._on_delete_event)
+
+        preferences.add_applycommand(self.apply_settings)
+        self.apply_settings()
 
     def __eq__(self, other):
         """Returns self == other"""
@@ -57,17 +61,17 @@ class _Note:
         except ValueError:
             # Exception chaining tends to make unnecessarily verbose
             # tracebacks
-            raise TypeError(("cannot compare _Note objects with {.__name__} "
-                             "objects").format(type(other))) from None
+            raise TypeError("cannot compare _Note objects with %r objects"
+                            % type(other).__name__) from None
 
     def __int__(self):
-        """Returns the note's number used in the filename and ordering
-        """
+        """Returns the note's number used in the filename and
+        ordering"""
         return self._number
 
     def _get_path(self):
         """Returns the path to the note's file"""
-        return os.path.join(filepaths.configdir, TEMPLATE.format(int(self)))
+        return os.path.join(filepaths.user_config_dir, _TEMPLATE % self)
 
     def _on_delete_event(self, window, event):
         """Saves and hides the note, then returns True to make sure the
@@ -141,6 +145,22 @@ class _Note:
             if os.path.isfile(path):
                 os.remove(path)
 
+    def apply_settings(self):
+        """Applies new color and font preferences"""
+        textview = self._builder.get_object('textview1')
+
+        fg = Gdk.RGBA()
+        fg.parse(preferences.get_rgba('notefg'))
+        bg = Gdk.RGBA()
+        bg.parse(preferences.get_rgba('notebg'))
+        font = Pango.FontDescription(preferences.get_font('notefont'))
+
+        textview.override_color(Gtk.StateFlags.NORMAL, fg)
+        textview.override_color(Gtk.StateFlags.SELECTED, bg)
+        textview.override_background_color(Gtk.StateFlags.NORMAL, bg)
+        textview.override_background_color(Gtk.StateFlags.SELECTED, fg)
+        textview.override_font(font)
+
 
 def unload():
     """Saves and hides the notes"""
@@ -163,10 +183,11 @@ def new_note(*ign):
 
 # Loading the notes
 all_notes = []
-for name in os.listdir(filepaths.configdir):
-    matches = re.search(REGEX, name)
-    if matches and os.path.isfile(os.path.join(filepaths.configdir, name)):
-        all_notes.append(_Note(int(matches.group(1))))
+for name in os.listdir(filepaths.user_config_dir):
+    path = os.path.join(filepaths.user_config_dir, name)
+    matches = re.search(_REGEX, name)
+    if matches and os.path.isfile(path):
+        all_notes.append(_Note(matches.group(1)))
 all_notes.sort()
 
 indicator.update(all_notes)

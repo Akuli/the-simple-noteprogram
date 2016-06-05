@@ -1,0 +1,25 @@
+#!/bin/bash
+# This script selects the install location for The Simple Noteprogram.
+# It should be run from the directory above this directory.
+
+echo ""
+echo "Where would you like to install this program?"
+echo "Enter an absolute path that does not end with a slash."
+
+while true
+do
+	read path
+	length="${#path}"
+	((length--))
+	first_char="${path:0:1}"
+	last_char="${path:$length:1}"
+	if [ "$first_char" = "/" ] && [ "$last_char" != "/" ] && [ -d "$path" ]
+	then
+		break
+	else
+		echo "'$path' is not a valid path."
+	fi
+done
+
+echo "$path" > prefix-selection
+echo "The prefix was changed."

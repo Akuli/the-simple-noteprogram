@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-import sys
-if sys.version_info[:2] < (3, 2):                           # NOQA
-    sys.exit("This program requires Python 3.2 or newer.")  # NOQA
-from os.path import abspath, dirname, join
+"""This file is a launcher for The Simple Noteprogram on non-Windows
+operating systems"""
 
-# This is bad, but not as bad as running the module in a subprocess with
-# sys.executable -m
-sys.path.append(join(
-    dirname(dirname(abspath(__file__))),
-    'lib', 'the-simple-noteprogram',
-))
+from os.path import abspath, dirname, join
+import sys
+
+prefix = dirname(dirname(abspath(__file__)))
+
+# This is bad, but not as bad as running the whole program in a
+# subprocess
+sys.path.append(join(prefix, 'lib', 'the-simple-noteprogram'))
 from the_simple_noteprogram.__main__ import main
 
 if __name__ == '__main__':
