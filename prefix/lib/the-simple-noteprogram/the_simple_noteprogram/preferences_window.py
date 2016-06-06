@@ -98,7 +98,7 @@ class _PreferenceBox(Gtk.Box):
         try:
             button.set_active(autostarter.get_status())
         except Exception as e:
-            button.set_tooltip_text("%s: %s" % (type(e).__name__, e))
+            button.set_tooltip_text(type(e).__name__ + ": " + str(e))
             button.set_state(Gtk.StateType.INSENSITIVE)
         button.connect('toggled', self._on_autostart_toggled)
         frame.add_single(button)
@@ -116,7 +116,7 @@ class _PreferenceBox(Gtk.Box):
         try:
             autostarter.set_status(button.get_active())
         except Exception as e:
-            button.set_tooltip_text("%s: %s" % (type(e).__name__, e))
+            button.set_tooltip_text(type(e).__name__ + ": " + str(e))
             button.set_state(Gtk.StateType.INSENSITIVE)
 
 
