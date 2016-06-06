@@ -47,7 +47,7 @@ def _on_statusicon_click(statusicon, button, time=None):
     if time is None:
         time = Gtk.get_current_event_time()
     _MENU.popup(None, None, Gtk.StatusIcon.position_menu,
-               statusicon, button, time)
+                statusicon, button, time)
 
 
 def update(notelist):
@@ -113,7 +113,8 @@ def load():
         _INDICATOR = Gtk.StatusIcon()
         _INDICATOR.set_from_file(icon.get_filename())
         _INDICATOR.connect('popup-menu', _on_statusicon_click)
-        _INDICATOR.connect('activate', _on_statusicon_click, Gdk.BUTTON_PRIMARY)
+        _INDICATOR.connect('activate', _on_statusicon_click,
+                           Gdk.BUTTON_PRIMARY)
     else:
         _INDICATOR = AppIndicator3.Indicator.new(
             'the-simple-noteprogram', icon.get_filename(),

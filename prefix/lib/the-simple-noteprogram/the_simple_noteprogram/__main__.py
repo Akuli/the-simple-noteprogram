@@ -26,17 +26,18 @@ if sys.version_info[:2] < (3, 2):       # NOQA
     sys.exit("This program requires Python 3.2 or newer.")  # NOQA
 import argparse
 from gettext import gettext as _
+import os
 import signal
+import filelock
 import gi
 gi.require_version('Gtk', '3.0')        # NOQA
 from gi.repository import Gtk
-from the_simple_noteprogram import about, indicator, locker, notes
+from the_simple_noteprogram import about, filepaths, indicator, notes
 
 
 class ArgumentParser(argparse.ArgumentParser):
 
     def print_help(self):
-        from the_simple_noteprogram import about
         print("The Simple Noteprogram: %s." % about.SHORT_DESC)
         print()
         argparse.ArgumentParser.print_help(self)
@@ -66,8 +67,20 @@ def main(args=None):
                         help=_("make a new note"))
     args = parser.parse_args(args)
 
-    # Checking for another instance
-    if locker.duplicatecheck():
+    # Ctrl+C interrupting, doesn't save opened notes
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
+
+    # Running
+    lock = filelock.FileLock(os.path.join(filepaths.user_cache_dir, 'lock'))
+    try:
+        with lock.acquire(timeout=0):
+            indicator.load()
+            notes.load()
+            if args.new_note:
+                notes.new_note()
+            Gtk.main()
+            notes.unload()
+    except filelock.Timeout:
         dialog = Gtk.MessageDialog(
             # Setting None as the parent is usually a bad idea, but in
             # this case there is no parent window
@@ -77,19 +90,6 @@ def main(args=None):
         )
         dialog.run()
         dialog.destroy()
-        sys.exit()
-
-    # Ctrl+C interrupting, doesn't save opened notes
-    signal.signal(signal.SIGINT, signal.SIG_DFL)
-
-    # Running
-    indicator.load()
-    notes.load()
-    with locker.lockfile():
-        if args.new_note:
-            notes.new_note()
-        Gtk.main()
-        notes.unload()
 
     # This function is not meant to be ran twice
     sys.exit()

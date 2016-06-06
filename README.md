@@ -20,14 +20,15 @@ You need to have these dependencies installed in order to install this program:
 | GNU Make                          | `make`                            |
 | Python 3.2 or newer               | `python3` (installed by default)  |
 | Appdirs for Python 3              | `python3-appdirs`                 |
-| psutil for Python 3               | `python3-psutil`                  |
+| py-filelock for Python 3          | no Debian/Ubuntu package yet      |
 | PyGI for Python 3                 | `python3-gi`                      |
 | GTK+3 for GI                      | `gir1.2-gtk-3.0`                  |
 | AppIndicator 3 for GI (optional)  | `gir1.2-appindicator3-0.1`        |
 
-Most GNU/Linux distributions come with many of these dependencies installed, and the rest of them are usually available in the distribution's package manager. For example, on Ubuntu/Debian based distributions you can simply run this command to install everything (`$` is the prompt, don't type it literally):
+Most GNU/Linux distributions come with many of these dependencies installed, and the rest of them are usually available in the distribution's package manager. If not, you can use pip. For example, on Ubuntu/Debian based distributions you can simply run this command to install everything (`$` is the prompt, don't type it literally):
 
     $ sudo apt-get install git make python3-appdirs python3-psutil python3-gi gir1.2-gtk-3.0 gir1.2-appindicator3-0.1
+    $ sudo python3 -m pip install filelock
 
 ## Downloading and running without installing
 
