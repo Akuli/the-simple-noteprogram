@@ -20,18 +20,15 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-"""This file is a launcher for The Simple Noteprogram on Unix-like
-operating systems"""
+"""Launcher for The Simple Noteprogram."""
 
 from os.path import abspath, dirname, join
+import runpy
 import sys
 
 prefix = dirname(dirname(abspath(__file__)))
-
-# This is bad, but not as bad as running the whole program in a
-# subprocess
-sys.path.append(join(prefix, 'lib', 'the-simple-noteprogram'))
-from the_simple_noteprogram.__main__ import main
+location = join(prefix, 'lib', 'the-simple-noteprogram',
+                'the_simple_noteprogram')
 
 if __name__ == '__main__':
-    main()
+    runpy.run_path(location)
